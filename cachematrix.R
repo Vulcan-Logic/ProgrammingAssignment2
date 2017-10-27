@@ -3,13 +3,15 @@
 
 ## store the matrix and it's inverse in chache memory to speed up operations
 makeCacheMatrix <- function(x = matrix()) {
-    mInverse <- NULL
-    set <- function(y) {    #set/store the matrix values
-      if (is.null(x)){      #check if supplied matrix is not null
-        x <<- y             #store the matrix value in cache
+    set <- function(y) {     #set/store the matrix values
+      if (!is.null(x)){      #check if supplied matrix is not null
+        x <<- y              #store the matrix value in cache
+        mInverse <- NULL     #set the inverse to NULL
       }
       else if (x!=y){       #check if matrix has changed
+        message("stored matrix has been changed")
         x <<- y             #store the matrix value in cache
+        mInverse <- NULL    #set the inverse to NULL
       }
     }
     get <- function() x                                      #return the stored matrix
